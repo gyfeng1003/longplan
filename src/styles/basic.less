@@ -1,0 +1,240 @@
+@charset "UTF-8";
+@import "common";
+@import "variable";
+
+@media screen and (max-width: 319px) {
+  html {
+    font-size: 85.33333px; } }
+
+@media screen and (min-width: 320px) and (max-width: 359px) {
+  html {
+    font-size: 85.33333px; } }
+
+@media screen and (min-width: 360px) and (max-width: 374px) {
+  html {
+    font-size: 96px; } }
+
+@media screen and (min-width: 375px) and (max-width: 383px) {
+  html {
+    font-size: 100px; } }
+
+@media screen and (min-width: 384px) and (max-width: 399px) {
+  html {
+    font-size: 102.4px; } }
+
+@media screen and (min-width: 400px) and (max-width: 413px) {
+  html {
+    font-size: 106.66667px; } }
+
+@media screen and (min-width: 414px) {
+  html {
+    font-size: 110.4px; } }
+
+
+
+/*字体样式修改*/
+@media screen and (max-width: 319px) {
+  .h1{
+    font-size: @font28 - 1;
+  }
+  .font24{
+    font-size: @font24 - 1;
+  }
+  .font16{
+    font-size: @font16 - 1;
+  }
+  .font14{
+    font-size: @font14 - 1;
+  }
+  .font12{
+    font-size: @font12 - 1;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 359px) {
+  .h1{
+    font-size: @font28 - 1;
+  }
+  .font24{
+    font-size: @font24 - 1;
+  }
+  .font16{
+    font-size: @font16 - 1;
+  }
+  .font14{
+    font-size: @font14 - 1;
+  }
+  .font12{
+    font-size: @font12 - 1;
+  }
+}
+
+@media screen and (min-width: 360px) and (max-width: 374px) {
+  .h1{
+    font-size: @font28;
+  }
+  .font24{
+    font-size: @font24;
+  }
+  .font16{
+    font-size: @font16;
+  }
+  .font14{
+    font-size: @font14;
+  }
+  .font12{
+    font-size: @font12;
+  }
+}
+
+@media screen and (min-width: 375px) and (max-width: 383px) {
+  .h1{
+    font-size: @font28;
+  }
+  .font24{
+    font-size: @font24;
+  }
+  .font16{
+    font-size: @font16;
+  }
+  .font14{
+    font-size: @font14;
+  }
+  .font12{
+    font-size: @font12;
+  }
+}
+
+@media screen and (min-width: 384px) and (max-width: 399px) {
+  .h1{
+    font-size: @font28;
+  }
+  .font24{
+    font-size: @font24;
+  }
+  .font16{
+    font-size: @font16;
+  }
+  .font14{
+    font-size: @font14;
+  }
+  .font12{
+    font-size: @font12;
+  }
+}
+
+@media screen and (min-width: 400px) and (max-width: 413px) {
+  .h1{
+    font-size: @font28 + 1;
+  }
+  .font24{
+    font-size: @font24 + 1;
+  }
+  .font16{
+    font-size: @font16 + 1;
+  }
+  .font14{
+    font-size: @font14 + 1;
+  }
+  .font12{
+    font-size: @font12 + 1;
+  }
+}
+
+@media screen and (min-width: 414px) {
+  .h1{
+    font-size: @font28 + 1;
+  }
+  .font24{
+    font-size: @font24 + 1;
+  }
+  .font16{
+    font-size: @font16 + 1;
+  }
+  .font14{
+    font-size: @font14 + 1;
+  }
+  .font12{
+    font-size: @font12 + 1;
+  }
+}
+
+.orange{
+  color: @orange;
+}
+.gray{
+  color: @gray;
+}
+.active{
+  background: @orange;
+  border-radius: 16px;
+  color: #fff;
+  border: 1px solid @orange!important;
+}
+.select{
+  border: 1px solid #d4471d;
+  box-shadow: 0 0 0.4rem 0.004rem #f5b197!important;
+  color: @orange;
+}
+
+input,button{
+  outline: none;
+}
+
+.btn {
+  font-weight: 400;
+  text-align: center;
+  vertical-align: middle;
+  touch-action: manipulation;
+  cursor: pointer;
+  background-image: none;
+  border: none;
+  white-space: nowrap;
+  padding: 8px 12px;
+  font-size: 16px;
+  border-radius: 3px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.btn-primary {
+  color: #fff;
+  background: linear-gradient(to right, #ed7882, #f0853b);
+}
+.btn-primary:active {
+  color: #fff;
+  opacity: 0.6;
+}
+
+.range {
+  input[type=range] {
+    -webkit-appearance: none;
+    width: 100%;
+    border-radius: 10px; /*这个属性设置使填充进度条时的图形为圆角*/
+    background: -webkit-linear-gradient(#ccc, #ccc) no-repeat, #ccc;/*设置左边颜色为#61bd12，右边颜色为#ddd*/
+  }
+  input[type=range]::-webkit-slider-runnable-track {
+    height: 15px;
+    border-radius: 10px; /*将轨道设为圆角的*/
+    //box-shadow: 0 0 1px #def3f8, inset 0 .125em .125em #0d1112; /*轨道内置阴影效果*/
+  }
+  input[type=range]::-moz-range-progress {
+    background: linear-gradient(to right, @orange, white 100%, #ccc);
+    height: 13px;
+    border-radius: 10px;
+  }
+  input[type=range]:focus {
+    outline: none;
+  }
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 24px;
+    width: 24px;
+    margin-top: -4px; /*使滑块超出轨道部分的偏移量相等*/
+    background: #ffffff;
+    border-radius: 50%; /*外观设置为圆形*/
+    //border: solid 0.125em rgba(205, 224, 230, 0.5); /*设置边框*/
+    box-shadow: 0 0 .125em #ccc; /*添加底部阴影*/
+  }
+}
