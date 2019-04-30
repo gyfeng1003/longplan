@@ -1,6 +1,4 @@
-# longplan
-
-> longplan
+> vue-cli2项目、加入了i18n国际化、使用echarts实现了分时图、K线图功能、改造elementUI table组件实现了固定头、固定列表格
 
 ## Build Setup
 
