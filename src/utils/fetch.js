@@ -4,8 +4,9 @@ import Vue from 'vue';
 
 // 创建axios实例
 const service = axios.create({
-   baseURL: 'http://59.110.239.89:8080/smartHome/', // api的base_url
+  // baseURL: 'http://59.110.239.89:8080/smartHome/', // api的base_url
 	//baseURL: '/',
+	baseURL: 'https://pch5.htsec.com/',
   timeout: 15000,                  // 请求超时时间
   headers: {'Content-Type': 'application/json'}
 })
@@ -17,9 +18,9 @@ service.interceptors.request.use(config => {
     // Vue.$loading.show({
     //   text: '加载中'
     // })
-	  Vue.$loading.show({
-		  text: 'Loading'
-	  })
+	 //  Vue.$loading.show({
+		//   text: 'Loading'
+	 //  })
   }
   return config
 }, error => {
@@ -31,7 +32,7 @@ service.interceptors.request.use(config => {
 // respone拦截器
 service.interceptors.response.use(response => {
   const res = response.data;
-  Vue.$loading.hide();
+  // Vue.$loading.hide();
   return new Promise(resolve => {
     resolve(res)
   }, error=>{
@@ -39,7 +40,7 @@ service.interceptors.response.use(response => {
     Promise.reject(error)
   });
 }, error => {
-  Vue.$loading.hide();
+  // Vue.$loading.hide();
   console.log('err' + error)// for debug
   return Promise.reject(error)
 })

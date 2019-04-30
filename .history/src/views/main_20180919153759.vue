@@ -7,7 +7,7 @@
             </div>
             <section class="menu-container">
                 <ul class="clearfix">
-                    <li :class="{'active': num == index}" @click="switchTab(index)" :key="index" v-for="(menu, index) in menus">
+                    <li :class="{'active': num == index}" @click="switchTab(index)" v-for="(menu, index) in menus">
                         {{menu}}
                     </li>
                 </ul>

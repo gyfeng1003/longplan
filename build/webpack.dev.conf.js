@@ -11,6 +11,7 @@ const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
 const fs = require('fs')
 
+const posts = require('../mock/posts.json') // 文章列表数据源
 // const newData = require('../mock/newData.json')
 // const realData = require('../mock/realData.json')
 // const devicelist = require('../mock/devicelist.js')
@@ -54,7 +55,9 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       poll: config.dev.poll,
     },
 	before(app){
-
+		app.get('/stockHaving', (req, res) => {
+			res.json(realData)
+		})
 		// app.get('/datas/getAllDataOld', (req, res) => {
 		// 	res.json(realData)
 		// })

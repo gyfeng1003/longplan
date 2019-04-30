@@ -75,3 +75,19 @@ export function sceneList(param) {
 		method: 'GET'
 	})
 }
+
+export function getMinuteData(data) {
+	return fetch({
+		url: '/minute/minute',
+		method: 'POST',
+		data: data
+	})
+}
+
+export function findKLine(data) {
+	return fetch({
+		url: '/KLine/KLine',
+		method: 'POST',
+		data: data
+	})
+}

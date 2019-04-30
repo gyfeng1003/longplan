@@ -119,111 +119,111 @@
 			})
 
 			var locale = this.$i18n.locale;
-			getDevices({locale}).then(res => {
-				if (res.status == '0') {
-					var dList = res.dList;
-
-                    if(locale=='en'){
-                        dList = dList[0];
-                        for(var key in dList){
-                        	var vals = [];
-	                        dList[key].forEach((data,index)=>{
-		                        if(data.showName){
-			                        var enrgbidx = data.showName.indexOf('rgb');
-			                        var enhueidx = data.showName.indexOf('hue strip'),name;
-			                        name = data.showName;
-			                        if(enrgbidx === -1 && enhueidx === -1){
-				                        name = data.showName;
-			                        }
-			                        if(enrgbidx !== -1){
-				                        name = data.showNamee.slice(0, enrgbidx);
-			                        }
-			                        if(enhueidx !== -1){
-				                        name = data.showName.slice(0, enhueidx);
-			                        }
-		                        }
-                                vals.push({
-	                                name: name,
-	                                orialName: data.name,
-                                    zhName: data.name,
-	                                order: '',
-	                                value1: 0,
-	                                value2: 0,
-	                                value3: 0,
-	                                value4: 0
-                                })
-                            })
-                        	this.rooms.push({
-		                        roomName: key,
-		                        devices: vals
-                            })
-                        }
-                        console.log(this.rooms)
-                    }else{
-	                    //var dList = [{roomName: '00', deviceName: '哈哈00'},{roomName: '00', deviceName: '哈哈00'},{roomName: '11', deviceName: '哈哈11'},{roomName: '22', deviceName: '哈哈22'},{roomName: '22', deviceName: '哈哈22'},{roomName: '33', deviceName: '哈哈33'},{roomName: '22', deviceName: '哈哈22'},{roomName: '00', deviceName: '哈哈00'},{roomName: '00', deviceName: '哈哈00'},{roomName: '00', deviceName: '哈哈00'} ];
-	                    dList.forEach((item) => {
-		                    let index = this.rooms.findIndex(function (data) {
-			                    return data.roomName == item.roomName;
-		                    })
-		                    if(item.deviceName){
-			                    var rgbidx = item.deviceName.indexOf('rgb');
-			                    var hueidx = item.deviceName.indexOf('hue strip'),name;
-			                    name = item.deviceName;
-			                    if(rgbidx === -1 && hueidx === -1){
-				                    name = item.deviceName;
-			                    }
-			                    if(rgbidx !== -1){
-				                    name = item.deviceName.slice(0, rgbidx);
-			                    }
-			                    if(hueidx !== -1){
-				                    name = item.deviceName.slice(0, hueidx);
-			                    }
-		                    }
-		                    if(index === -1){
-			                    this.rooms.push({
-				                    roomName: item.roomName,
-				                    devices: [
-					                    {
-						                    name: name,
-						                    orialName: item.deviceName,
-						                    zhName: item.deviceName,
-						                    order: item.order,
-						                    value1: item.value1,
-						                    value2: item.value2,
-						                    value3: item.value3,
-						                    value4: item.value4
-					                    }
-				                    ]
-			                    })
-		                    }else{
-			                    this.rooms[index].devices.push(
-				                    {
-					                    name: name,
-					                    orialName: item.deviceName,
-					                    zhName: item.deviceName,
-					                    order: item.order,
-					                    value1: item.value1,
-					                    value2: item.value2,
-					                    value3: item.value3,
-					                    value4: item.value4
-				                    });
-		                    }
-	                    })
-                    }
-
-                    var idx = this.rooms.findIndex((d) => {
-                        return d.roomName == this.room
-                    })
-                    if(idx !== -1){
-	                    this.devices = this.rooms[idx].devices;
-                    }
-				} else {
-					this.$toast("status:" + status + 'msg:' + msg);
-				}
-				this.btnVisible = true;
-			}).then(err=>{
-				this.btnVisible = true;
-            })
+            // getDevices({locale}).then(res => {
+				// if (res.status == '0') {
+				// 	var dList = res.dList;
+            //
+            //         if(locale=='en'){
+            //             dList = dList[0];
+            //             for(var key in dList){
+            //             	var vals = [];
+	         //                dList[key].forEach((data,index)=>{
+		     //                    if(data.showName){
+			 //                        var enrgbidx = data.showName.indexOf('rgb');
+			 //                        var enhueidx = data.showName.indexOf('hue strip'),name;
+			 //                        name = data.showName;
+			 //                        if(enrgbidx === -1 && enhueidx === -1){
+				//                         name = data.showName;
+			 //                        }
+			 //                        if(enrgbidx !== -1){
+				//                         name = data.showNamee.slice(0, enrgbidx);
+			 //                        }
+			 //                        if(enhueidx !== -1){
+				//                         name = data.showName.slice(0, enhueidx);
+			 //                        }
+		     //                    }
+            //                     vals.push({
+	         //                        name: name,
+	         //                        orialName: data.name,
+            //                         zhName: data.name,
+	         //                        order: '',
+	         //                        value1: 0,
+	         //                        value2: 0,
+	         //                        value3: 0,
+	         //                        value4: 0
+            //                     })
+            //                 })
+            //             	this.rooms.push({
+		     //                    roomName: key,
+		     //                    devices: vals
+            //                 })
+            //             }
+            //             console.log(this.rooms)
+            //         }else{
+	         //            //var dList = [{roomName: '00', deviceName: '哈哈00'},{roomName: '00', deviceName: '哈哈00'},{roomName: '11', deviceName: '哈哈11'},{roomName: '22', deviceName: '哈哈22'},{roomName: '22', deviceName: '哈哈22'},{roomName: '33', deviceName: '哈哈33'},{roomName: '22', deviceName: '哈哈22'},{roomName: '00', deviceName: '哈哈00'},{roomName: '00', deviceName: '哈哈00'},{roomName: '00', deviceName: '哈哈00'} ];
+	         //            dList.forEach((item) => {
+		     //                let index = this.rooms.findIndex(function (data) {
+			 //                    return data.roomName == item.roomName;
+		     //                })
+		     //                if(item.deviceName){
+			 //                    var rgbidx = item.deviceName.indexOf('rgb');
+			 //                    var hueidx = item.deviceName.indexOf('hue strip'),name;
+			 //                    name = item.deviceName;
+			 //                    if(rgbidx === -1 && hueidx === -1){
+				//                     name = item.deviceName;
+			 //                    }
+			 //                    if(rgbidx !== -1){
+				//                     name = item.deviceName.slice(0, rgbidx);
+			 //                    }
+			 //                    if(hueidx !== -1){
+				//                     name = item.deviceName.slice(0, hueidx);
+			 //                    }
+		     //                }
+		     //                if(index === -1){
+			 //                    this.rooms.push({
+				//                     roomName: item.roomName,
+				//                     devices: [
+				// 	                    {
+				// 		                    name: name,
+				// 		                    orialName: item.deviceName,
+				// 		                    zhName: item.deviceName,
+				// 		                    order: item.order,
+				// 		                    value1: item.value1,
+				// 		                    value2: item.value2,
+				// 		                    value3: item.value3,
+				// 		                    value4: item.value4
+				// 	                    }
+				//                     ]
+			 //                    })
+		     //                }else{
+			 //                    this.rooms[index].devices.push(
+				//                     {
+				// 	                    name: name,
+				// 	                    orialName: item.deviceName,
+				// 	                    zhName: item.deviceName,
+				// 	                    order: item.order,
+				// 	                    value1: item.value1,
+				// 	                    value2: item.value2,
+				// 	                    value3: item.value3,
+				// 	                    value4: item.value4
+				//                     });
+		     //                }
+	         //            })
+            //         }
+            //
+            //         var idx = this.rooms.findIndex((d) => {
+            //             return d.roomName == this.room
+            //         })
+            //         if(idx !== -1){
+	         //            this.devices = this.rooms[idx].devices;
+            //         }
+				// } else {
+				// 	this.$toast("status:" + status + 'msg:' + msg);
+				// }
+				// this.btnVisible = true;
+            // }).then(err=>{
+				// this.btnVisible = true;
+            // })
 		},
 		methods: {
 			getRoomName(data){

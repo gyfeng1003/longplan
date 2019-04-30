@@ -1,117 +1,127 @@
 <template>
     <section class="page">
-      <Subtitle site="real"></Subtitle>
-      <section class="chart_title">
-        <section class="feedback">
-          <section @click="toggleUpDown(1)" :class="{'on': idx==1}"><img src="../images/down.png"></section>
-          <section @click="toggleUpDown(-1)" :class="{'on': idx==-1}"><img src="../images/down.png"></section>
-        </section>
-        <section class="orange"><span>{{series[series.length-1]}}</span>
-          <span v-if="index==1">ppm</span>
-          <span v-if="index==2||index==3">%RH</span>
-          <span v-if="index==4||index==8">{{$t('RealTimeData.sheng')}}</span>
-          <span v-if="index==5||index==9">{{$t('RealTimeData.kgwh')}}</span>
-          <span v-if="index==6||index==7">{{$t('RealTimeData.wk')}}</span>
-          <span v-if="index==10||index==11">℃</span>
-        </section>
-      </section>
-      <LineChart id="chartGraph" :seriesData="series" :name="optname"></LineChart>
-      <section class="container clearfix" style="display: flex;">
-        <section class="left">
-          <section class="propertyWraper">
-            <section class="property" :class="{'select': index==1}" @click="choose(1)">
-              <section class="name">CO2</section>
-              <section class="value">
-                <span class="font24">{{property.co2}}</span><span>ppm</span>
-              </section>
-            </section>
-          </section>
-          <section class="propertyWraper">
-            <section class="property" :class="{'select': index==2}" @click="choose(2)">
-              <section class="name">{{$t('RealTimeData.shineishidu')}}</section>
-              <section class="value">
-                <span class="font24">{{property.hum}}</span><span>%RH</span>
-              </section>
-            </section>
-          </section>
-          <section class="propertyWraper">
-            <section class="property" :class="{'select': index==3}" @click="choose(3)">
-              <section class="name">{{$t('RealTimeData.shiwaishidu')}}</section>
-              <section class="value">
-                <span class="font24">{{property.humout}}</span><span>%RH</span>
-              </section>
-            </section>
-          </section>
-          <section class="propertyWraper">
-            <section class="property" :class="{'select': index==4}" @click="choose(4)">
-              <section class="name">{{$t('RealTimeData.shuishouji')}}</section>
-              <section class="value">
-                <span class="font24">{{property.waterc}}</span><span>{{$t('RealTimeData.sheng')}}</span>
-              </section>
-            </section>
-          </section>
-        </section>
-        <section class="middle">
-          <section class="propertyWraper">
-            <section class="property" :class="{'select': index==5}" @click="choose(5)">
-              <section class="name">{{$t('RealTimeData.fadianliang')}}</section>
-              <section class="value">
-                <span class="font24">{{property.pg}}</span><span>{{$t('RealTimeData.kgwh')}}</span>
-              </section>
-            </section>
-          </section>
-          <section class="propertyWraper">
-            <section class="property" :class="{'select': index==6}" @click="choose(6)">
-              <section class="name">{{$t('RealTimeData.homepm')}}</section>
-              <section class="value">
-                <span class="font24">{{property.pm25}}</span><span>{{$t('RealTimeData.weik')}}</span>
-              </section>
-            </section>
-          </section>
-          <section class="propertyWraper">
-            <section class="property" :class="{'select': index==7}" @click="choose(7)">
-              <section class="name">{{$t('RealTimeData.shiwaipm')}}</section>
-              <section class="value">
-                <span class="font24">{{property.pm25out}}</span><span>{{$t('RealTimeData.weik')}}</span>
-              </section>
-            </section>
-          </section>
-          <section class="propertyWraper">
-            <section class="property" :class="{'select': index==8}" @click="choose(8)">
-              <section class="name">{{$t('RealTimeData.yongshuiliang')}}</section>
-              <section class="value">
-                <span class="font24">{{property.wu}}</span><span>{{$t('RealTimeData.sheng')}}</span>
-              </section>
-            </section>
-          </section>
-        </section>
-        <section class="right">
-          <section class="propertyWraper">
-            <section class="property" :class="{'select': index==9}" @click="choose(9)">
-              <section class="name">{{$t('RealTimeData.yongdianl')}}</section>
-              <section class="value">
-                <span class="font24">{{property.pu}}</span><span>{{$t('RealTimeData.kgwh')}}</span>
-              </section>
-            </section>
-          </section>
-          <section class="propertyWraper">
-            <section class="property" :class="{'select': index==10}" @click="choose(10)">
-              <section class="name">{{$t('RealTimeData.shineiwendu')}}</section>
-              <section class="value">
-                <span class="font24">{{property.temp}}</span><span>℃</span>
-              </section>
-            </section>
-          </section>
-          <section class="propertyWraper">
-            <section class="property" :class="{'select': index==11}" @click="choose(11)">
-              <section class="name">{{$t('RealTimeData.shiwaiwendu')}}</section>
-              <section class="value">
-                <span class="font24">{{property.tempout}}</span><span>℃</span>
-              </section>
-            </section>
-          </section>
-        </section>
-      </section>
+      <!--<Subtitle site="real"></Subtitle>-->
+      <!--<section class="chart_title">-->
+        <!--<section class="feedback">-->
+          <!--<section @click="toggleUpDown(1)" :class="{'on': idx==1}"><img src="../images/down.png"></section>-->
+          <!--<section @click="toggleUpDown(-1)" :class="{'on': idx==-1}"><img src="../images/down.png"></section>-->
+        <!--</section>-->
+        <!--<section class="orange"><span>{{series[series.length-1]}}</span>-->
+          <!--<span v-if="index==1">ppm</span>-->
+          <!--<span v-if="index==2||index==3">%RH</span>-->
+          <!--<span v-if="index==4||index==8">{{$t('RealTimeData.sheng')}}</span>-->
+          <!--<span v-if="index==5||index==9">{{$t('RealTimeData.kgwh')}}</span>-->
+          <!--<span v-if="index==6||index==7">{{$t('RealTimeData.wk')}}</span>-->
+          <!--<span v-if="index==10||index==11">℃</span>-->
+        <!--</section>-->
+      <!--</section>-->
+      <!--<LineChart id="chartGraph" :seriesData="series" :name="optname"></LineChart>-->
+      <!--<section class="container clearfix" style="display: flex;">-->
+        <!--<section class="left">-->
+          <!--<section class="propertyWraper">-->
+            <!--<section class="property" :class="{'select': index==1}" @click="choose(1)">-->
+              <!--<section class="name">CO2</section>-->
+              <!--<section class="value">-->
+                <!--<span class="font24">{{property.co2}}</span><span>ppm</span>-->
+              <!--</section>-->
+            <!--</section>-->
+          <!--</section>-->
+          <!--<section class="propertyWraper">-->
+            <!--<section class="property" :class="{'select': index==2}" @click="choose(2)">-->
+              <!--<section class="name">{{$t('RealTimeData.shineishidu')}}</section>-->
+              <!--<section class="value">-->
+                <!--<span class="font24">{{property.hum}}</span><span>%RH</span>-->
+              <!--</section>-->
+            <!--</section>-->
+          <!--</section>-->
+          <!--<section class="propertyWraper">-->
+            <!--<section class="property" :class="{'select': index==3}" @click="choose(3)">-->
+              <!--<section class="name">{{$t('RealTimeData.shiwaishidu')}}</section>-->
+              <!--<section class="value">-->
+                <!--<span class="font24">{{property.humout}}</span><span>%RH</span>-->
+              <!--</section>-->
+            <!--</section>-->
+          <!--</section>-->
+          <!--<section class="propertyWraper">-->
+            <!--<section class="property" :class="{'select': index==4}" @click="choose(4)">-->
+              <!--<section class="name">{{$t('RealTimeData.shuishouji')}}</section>-->
+              <!--<section class="value">-->
+                <!--<span class="font24">{{property.waterc}}</span><span>{{$t('RealTimeData.sheng')}}</span>-->
+              <!--</section>-->
+            <!--</section>-->
+          <!--</section>-->
+        <!--</section>-->
+        <!--<section class="middle">-->
+          <!--<section class="propertyWraper">-->
+            <!--<section class="property" :class="{'select': index==5}" @click="choose(5)">-->
+              <!--<section class="name">{{$t('RealTimeData.fadianliang')}}</section>-->
+              <!--<section class="value">-->
+                <!--<span class="font24">{{property.pg}}</span><span>{{$t('RealTimeData.kgwh')}}</span>-->
+              <!--</section>-->
+            <!--</section>-->
+          <!--</section>-->
+          <!--<section class="propertyWraper">-->
+            <!--<section class="property" :class="{'select': index==6}" @click="choose(6)">-->
+              <!--<section class="name">{{$t('RealTimeData.homepm')}}</section>-->
+              <!--<section class="value">-->
+                <!--<span class="font24">{{property.pm25}}</span><span>{{$t('RealTimeData.weik')}}</span>-->
+              <!--</section>-->
+            <!--</section>-->
+          <!--</section>-->
+          <!--<section class="propertyWraper">-->
+            <!--<section class="property" :class="{'select': index==7}" @click="choose(7)">-->
+              <!--<section class="name">{{$t('RealTimeData.shiwaipm')}}</section>-->
+              <!--<section class="value">-->
+                <!--<span class="font24">{{property.pm25out}}</span><span>{{$t('RealTimeData.weik')}}</span>-->
+              <!--</section>-->
+            <!--</section>-->
+          <!--</section>-->
+          <!--<section class="propertyWraper">-->
+            <!--<section class="property" :class="{'select': index==8}" @click="choose(8)">-->
+              <!--<section class="name">{{$t('RealTimeData.yongshuiliang')}}</section>-->
+              <!--<section class="value">-->
+                <!--<span class="font24">{{property.wu}}</span><span>{{$t('RealTimeData.sheng')}}</span>-->
+              <!--</section>-->
+            <!--</section>-->
+          <!--</section>-->
+        <!--</section>-->
+        <!--<section class="right">-->
+          <!--<section class="propertyWraper">-->
+            <!--<section class="property" :class="{'select': index==9}" @click="choose(9)">-->
+              <!--<section class="name">{{$t('RealTimeData.yongdianl')}}</section>-->
+              <!--<section class="value">-->
+                <!--<span class="font24">{{property.pu}}</span><span>{{$t('RealTimeData.kgwh')}}</span>-->
+              <!--</section>-->
+            <!--</section>-->
+          <!--</section>-->
+          <!--<section class="propertyWraper">-->
+            <!--<section class="property" :class="{'select': index==10}" @click="choose(10)">-->
+              <!--<section class="name">{{$t('RealTimeData.shineiwendu')}}</section>-->
+              <!--<section class="value">-->
+                <!--<span class="font24">{{property.temp}}</span><span>℃</span>-->
+              <!--</section>-->
+            <!--</section>-->
+          <!--</section>-->
+          <!--<section class="propertyWraper">-->
+            <!--<section class="property" :class="{'select': index==11}" @click="choose(11)">-->
+              <!--<section class="name">{{$t('RealTimeData.shiwaiwendu')}}</section>-->
+              <!--<section class="value">-->
+                <!--<span class="font24">{{property.tempout}}</span><span>℃</span>-->
+              <!--</section>-->
+            <!--</section>-->
+          <!--</section>-->
+        <!--</section>-->
+      <!--</section>-->
+      <!--<section>-->
+      <!--</section>-->
+        <ul class="ul-a clearfix">
+            <li v-for="(item,index) in tabs" :class="{'curr':id == index}" @click="switchs(index)">
+                {{item}}
+            </li>
+        </ul>
+        <TimeShare v-if="id==0" @update="updateData"></TimeShare>
+        <KLine kType="1" v-if="id==1"></KLine>
+        <Elem-Table kType="2" v-if="id==2" v-bind="ccTableList.table"></Elem-Table>
     </section>
 </template>
 
@@ -119,32 +129,62 @@
     import Subtitle from './child/SubTitle';
     import LineChart from './child/LineChart';
     import {getRealTimeData, getChartData, ParamsEvaluate} from '../api/api';
+
+    import TimeShare from '../components/chart/TimeShare';
+    import KLine from '../components/chart/KLine';
+
+    import ElemTable from '../components/ElemTable';
     var timer;
     export default {
         name: "real-time-data",
         data(){
           return{
+	          id: 0,
             idx: '',
             index: 1,
             list: [],
             series: [],
+	          tabs: ['分时图', '日K', '周K'],
             property: {},
-	          optname:''
+	          optname:'',
+	          ccTableList: {
+		          table: {
+			          url: 'stockHaving',
+			          isParseHeader: false,
+			          tableOption: {
+				          'row-class-name': ({row}) => {
+					          if (row.profit < 0) {
+						          return 'green'
+					          }
+					          if (row.profit > 0) {
+						          return 'red'
+					          }
+					          return '';
+				          },
+			          }
+		          }
+	          }
           }
         },
         components: {
           Subtitle,
-          LineChart
+          LineChart,
+	        TimeShare,
+	        KLine,
+	        ElemTable
         },
         mounted(){
-          this.init(()=>{
-            clearInterval(timer);
-            timer = setInterval(()=>{
-              this.init();
-            }, 3000);
-          });
+          // this.init(()=>{
+          //   clearInterval(timer);
+          //   timer = setInterval(()=>{
+          //     this.init();
+          //   }, 3000);
+          // });
         },
         methods: {
+	        switchs(idx){
+                this.id = idx;
+            },
           init(callback){
             Promise.all([getRealTimeData().then(res=>{
               if(res.status == 0){
@@ -197,12 +237,29 @@
         },
         destroyed(){
           clearInterval(timer);
-        }
+        },
+	    updateData(data){
+		    console.log(data);
+	    }
     }
 </script>
 
 <style lang="less" type="text/less" scoped>
   @import "../styles/basic.less";
+  .ul-a{
+      height: 36px;
+      line-height: 36px;
+      margin-top: 16px;
+  }
+  .ul-a li{
+      float: left;
+      width: 33.33%;
+      text-align: center;
+  }
+  .curr{
+      background: #d4471d;
+      color: #fff;
+  }
   .page{
     margin: 0 @margin;
   }

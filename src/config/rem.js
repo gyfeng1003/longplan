@@ -50,4 +50,6 @@
     var b = parseFloat(a) / this.rem;
     return "string" == typeof a && a.match(/px$/) && (b += "rem"), b
   }
+  window.rem2px = k.rem2px;
+  window.px2rem = k.px2rem;
 }(window, window.lib || (window.lib = {}));

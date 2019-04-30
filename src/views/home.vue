@@ -191,15 +191,15 @@
             pass: this.loginUser.secretCode,
 	        // locale: this.$i18n.locale
           }
-          const res = await login(loginUser);
-          console.log(res);
-          if(res.msg == 'success'){
-	          setToken(res.user);
+          // const res = await login(loginUser);
+          // console.log(res);
+          // if(res.msg == 'success'){
+	       //    setToken(res.user);
 	          this.$router.push({path: '/main'});
-          }else{
-              this.$toast(res.msg);
-              return;
-          }
+          // }else{
+          //     this.$toast(res.msg);
+          //     return;
+          // }
         }
       },
       async registUser(){

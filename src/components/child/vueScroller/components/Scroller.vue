@@ -189,7 +189,7 @@
     props: {
       onRefresh: Function,
       onInfinite: Function,
-
+	    moveEvent:Function,
       refreshText: {
         type: String,
         default: '下拉刷新'
@@ -309,7 +309,9 @@
       if (this.cssClass) this.content.classList.add(this.cssClass)
       this.pullToRefreshLayer = this.content.getElementsByTagName("div")[0]
 
-      let render = getContentRender(this.content)
+      let render = getContentRender(this.content, (key, val)=>{
+      	if(!!this.moveEvent) this.moveEvent(key, val);
+      })
 
       let scrollerOptions = {
         scrollingX: false

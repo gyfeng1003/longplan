@@ -1,106 +1,15 @@
 <template>
   <section>
-    <section class="page" v-show="listVisible">
-      <section class="scheme clearfix" @click="toggle(item)" :class="{'select': item.select}" v-for="(item, index) in schemes">
-        <section class="text">
-          <section>{{item.name}}</section>
-          <section>{{item.desc}}</section>
-        </section>
-        <section class="edit" @click="editScheme">
-          <img src="../images/edit-night.png" v-show="!item.select"/>
-          <img src="../images/edit.png" v-show="item.select"/>
-        </section>
-      </section>
-      <section class="btn-group clearfix" v-show="btnVisible">
-        <section style="width: 100%;">
-          <section @click="addScheme()" class="button" style="box-shadow: 0 0 0.3rem #ccc;background: #fff;"><img src="../images/add-night.png"/></section>
-        </section>
-      </section>
-    </section>
-
-    <section class="page" v-show="!listVisible">
-      <section class="scheme clearfix">
-        <section class="text">
-          <input class="newScheme" placeholder="新建模式"/>
-        </section>
-        <section class="edit close" @click="close">
-          <img src="../images/close.png"/>
-        </section>
-      </section>
-      <section class="clearfix" v-for="(room, index) in rooms">
-        <section class="room">{{room.roomName}}</section>
-        <Device :list="room.devices"></Device>
-      </section>
-      <section class="btn-group clearfix">
-        <section><section @click="revertOperate" class="button"><img src="../images/revert.png"/></section></section>
-        <section><section @click="operate" class="button"><img src="../images/add.png"/></section></section>
-        <section><section @click="confirmOperate" class="button"><img src="../images/yes.png"/></section></section>
-      </section>
-    </section>
-
-    <!--添加、搜索设备对话框-->
-    <section v-show="dialogVisible" ref="operateModal" class="operateModal clearfix">
-      <section class="btn-list">
-        <section @click="addDevice" class="button">添加设备</section>
-      </section>
-      <section class="btn-list">
-        <section @click="searchDevice" class="button">搜索设备</section>
-      </section>
-      <section class="triangle"></section>
-    </section>
-
-    <!--添加设备对话框-->
-    <section v-show="deviceAddVisible" class="operateModal deviceModal clearfix">
-      <section class="header">
-          <span class="place" @click="selectRoom">选择设备&nbsp;&nbsp;{{room}}<img src="../images/select.png"/></span>
-      </section>
-      <section class="body">
-        <div class="clearfix font12">
-          <section class="flex">
-            <section @click="pickDevice(idx)" :class="{'active': idx==index}"  v-for="(device, idx) in list" v-if="idx%3==0" class="device mo">
-              {{device.name}}
-            </section>
-          </section>
-          <section class="flex">
-            <section @click="pickDevice(idx)" :class="{'active': idx==index}" v-for="(device, idx) in list" v-if="idx%3==1" class="device mo">
-              {{device.name}}
-            </section>
-          </section>
-          <section class="flex">
-            <section @click="pickDevice(idx)"  :class="{'active': idx==index}" v-for="(device, idx) in list" v-if="idx%3==2" class="device mo">
-              {{device.name}}
-            </section>
-          </section>
-        </div>
-      </section>
-      <section class="footer clearfix">
-        <section @click="cancel" class="group">取消</section>
-        <section @click="confirm" class="group orange">添加选中设备</section>
-      </section>
-    </section>
-    <section ref="layer" style="display:none;position: fixed;top: 0;bottom: 0;left: 0;right: 0;background: rgba(0,0,0,0.1);z-index: 0;"></section>
-
-      <!--搜索设备对话框 Swiper-->
-    <div v-if="deviceSearchVisible"  class="swiper">
-      <swiper :options="swiperOption">
-        <swiper-slide v-for="(item, i) in slides" :key="i">
-          <section class="modal">
-            <section class="header">
-              <span class="place">发现新风机</span>
-            </section>
-            <section class="body">
-              <img :src="item"/>
-            </section>
-            <section class="footer clearfix">
-              <section @click="ignoreDevice" class="group">忽略此设备</section>
-              <section @click="startConnect" class="group orange">开始连接</section>
-            </section>
-          </section>
-        </swiper-slide>
-      </swiper>
-    </div>
-
-    <actionsheet :list="actions" :open="open" :confirm="confirmSelect" :cancel="cancelSelect"></actionsheet>
+      <vue-pay-keyboard
+              ref="pay"
+              :is-pay='isPay'
+              @pas-end='pasEnd'
+              @close='isPay=false'>
+          <!-- 自定义支付动画 -->
+          <!--<div slot="loading-ani">-->
+              <!--<svg></svg>-->
+          <!--</div>-->
+      </vue-pay-keyboard>
   </section>
 </template>
 
@@ -113,122 +22,49 @@
     export default {
         name: "scene-scheme",
         data(){
-          return{
-            schemes: [],
-            idx: '',
-            index: '',
-            rooms: [
-              {roomName: '客厅',
-               devices: [
-                  {
-                    name: '筒灯'
-                  },
-                 {
-                    name: '传感器'
-                  },
-                 {
-                   name: '窗帘'
-                 },
-                 {
-                   name: '空调'
-                 },
-                 {
-                   name: '插座'
-                 }
-               ]
-              },
-              {roomName: '餐厅',
-                devices: [
-                  {
-                    name: '筒灯'
-                  },{
-                    name: '传感器'
-                  },{
-                    name: '窗帘'
-                  },{
-                    name: '空调'
-                  },{
-                    name: '插座'
-                  }
-                ]
-              }
-            ],
-            list: [
-                  {
-                    name: '筒灯'
-                  },
-                  {
-                    name: '传感器'
-                  },
-                  {
-                    name: '窗帘'
-                  },
-                  {
-                    name: '空调'
-                  },
-                  {
-                    name: '插座'
-                  }
-            ],
-            listVisible: true,
-            dialogVisible: false,       //添加、搜索对话框
-            deviceAddVisible: false,    //添加对话框
-            deviceSearchVisible: false, //搜索对话框
-            actions: ['客厅','餐厅'], //actionSheet
-            open: false,
-            room: '',
-            slides: [
-              'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1511015180050&di=0d2ee92eead284e8133d6df07535d75a&imgtype=0&src=http%3A%2F%2Fimg.sc115.com%2Fuploads1%2Fsc%2Fjpgs%2F1512%2Fapic16988_sc115.com.jpg',
-              'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1511015180167&di=7412fd486c47c15f1d27485be0d7bd28&imgtype=0&src=http%3A%2F%2Fwww.duoxinqi.com%2Fimages%2F2012%2F06%2F20120605_8.jpg',
-              'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1511015180167&di=3bcedd33a30129b9951be2a81f9b505c&imgtype=0&src=http%3A%2F%2Fpic1.5442.com%2F2015%2F0420%2F06%2F05.jpg'
-            ],
-	          btnVisible: false,
-            //轮播config
-            swiperOption: {
-              debugger: true,
-              slidesPerView: "auto",
-              centeredSlides: true
-            }
+          return {
+          	isPay: true
           }
         },
         mounted(){
-              this.room = this.actions[0].name;
-              this.$refs.layer.addEventListener('click', ()=> {
-                if(this.$refs.layer){
-                  this.deviceAddVisible = false;
-                  this.deviceAddVisible = false;
-                  this.deviceSearchVisible = false;
-                  this.deviceSearchVisible = false;
-                  this.$refs.layer.style.display = 'none';
-                }
-              }, false);
 
-              let locale = this.$i18n.locale;
-	        sceneList({locale: locale}).then(res=>{
-		        var sceneList;
-                if (res.status == '0') {
-                	if(locale=='en'){
-                        sceneList = res.sceneList || [];
-		                sceneList.forEach((data=>{
-			                this.schemes.push({
-				                name: data.showName, desc: '', select: false, orialName: data.name
-			                })
-		                }))
-                    }else{
-                        sceneList = res.sceneList || [];
-		                sceneList.forEach((data=>{
-			                this.schemes.push({
-				                name: data, desc: '', select: false,orialName:data
-			                })
-		                }))
-                    }
-                }else {
-                    this.$toast("status:" + status + 'msg:' + msg);
-                }
-                this.btnVisible = true;
-            }).then(err=>{
-		        this.btnVisible = true;
-            })
+            //   this.room = this.actions[0].name;
+            //   this.$refs.layer.addEventListener('click', ()=> {
+            //     if(this.$refs.layer){
+            //       this.deviceAddVisible = false;
+            //       this.deviceAddVisible = false;
+            //       this.deviceSearchVisible = false;
+            //       this.deviceSearchVisible = false;
+            //       this.$refs.layer.style.display = 'none';
+            //     }
+            //   }, false);
+            //
+            //   let locale = this.$i18n.locale;
+            // sceneList({locale: locale}).then(res=>{
+		     //    var sceneList;
+            //     if (res.status == '0') {
+            //     	if(locale=='en'){
+            //             sceneList = res.sceneList || [];
+		     //            sceneList.forEach((data=>{
+			 //                this.schemes.push({
+				//                 name: data.showName, desc: '', select: false, orialName: data.name
+			 //                })
+		     //            }))
+            //         }else{
+            //             sceneList = res.sceneList || [];
+		     //            sceneList.forEach((data=>{
+			 //                this.schemes.push({
+				//                 name: data, desc: '', select: false,orialName:data
+			 //                })
+		     //            }))
+            //         }
+            //     }else {
+            //         this.$toast("status:" + status + 'msg:' + msg);
+            //     }
+            //     this.btnVisible = true;
+            // }).then(err=>{
+		     //    this.btnVisible = true;
+            // })
         },
         components: {
           Device,
@@ -237,6 +73,16 @@
           actionsheet
         },
         methods: {
+	        pasEnd(val) {
+		        console.log(val);  //得到密码 可能会进行一些加密动作
+		        setTimeout(() => { // 模拟请求接口验证密码中 ..
+			        if (val === '111111') { // 密码正确
+				        this.$refs.pay.$payStatus(true) // 拿到子组件的事件
+			        } else {
+				        this.$refs.pay.$payStatus(false)
+			        }
+		        }, 1000)
+	        },
           editScheme(){
             this.listVisible = false;
           },
